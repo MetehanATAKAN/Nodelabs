@@ -5,7 +5,6 @@ import { SignUpPage } from '@/pages/auth/SignUpPage'
 import { DashboardLayout } from '@/pages/dashboard/DashboardLayout'
 import { DashboardHomeView } from '@/features/dashboard/ui/DashboardHomeView'
 import { ProtectedRoute, PublicRoute } from './guards'
-import { ErrorBoundary } from '@/shared/ui/ErrorBoundary/ErrorBoundary'
 import { Button } from '@/shared/ui/Button/Button'
 
 function ErrorPage() {

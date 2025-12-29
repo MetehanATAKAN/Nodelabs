@@ -43,9 +43,9 @@ async function makeRequest<T>(
   accessToken?: string,
   retryOn401 = true,
 ): Promise<T> {
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...(options.headers as Record<string, string>),
   }
 
   if (accessToken) {
@@ -54,21 +54,21 @@ async function makeRequest<T>(
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
-    headers,
+    headers: headers as HeadersInit,
     credentials: 'include',
   })
 
   if (response.status === 401 && retryOn401 && !endpoint.includes('/refresh-token') && !endpoint.includes('/login')) {
     try {
       const newAccessToken = await refreshAccessToken()
-      const retryHeaders: HeadersInit = {
+      const retryHeaders: Record<string, string> = {
         'Content-Type': 'application/json',
-        ...options.headers,
+        ...(options.headers as Record<string, string>),
         Authorization: `Bearer ${newAccessToken}`,
       }
       const retryResponse = await fetch(`${API_BASE_URL}${endpoint}`, {
         ...options,
-        headers: retryHeaders,
+        headers: retryHeaders as HeadersInit,
         credentials: 'include',
       })
       return handleResponse<T>(retryResponse)

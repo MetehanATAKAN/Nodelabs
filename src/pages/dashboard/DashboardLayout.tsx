@@ -45,7 +45,7 @@ export function DashboardLayout() {
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
       if (menuRef.current && !menuRef.current.contains(target)) {
         setMenuOpen(false);
@@ -59,7 +59,7 @@ export function DashboardLayout() {
       }
     }
 
-    function handleKeyDown(event: KeyboardEvent) {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         if (menuOpen) {
           setMenuOpen(false);

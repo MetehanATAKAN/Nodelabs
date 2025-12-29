@@ -34,7 +34,7 @@ export function Dropdown<T = string>({
   const triggerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node
       if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setIsOpen(false)
@@ -42,7 +42,7 @@ export function Dropdown<T = string>({
       }
     }
 
-    function handleKeyDown(event: KeyboardEvent) {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (!isOpen) return
 
       if (event.key === 'Escape') {
