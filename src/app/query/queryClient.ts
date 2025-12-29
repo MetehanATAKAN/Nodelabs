@@ -9,7 +9,6 @@ const handleAuthError = (error: ApiError) => {
     const storedAuth = store.getState().auth
     if (!storedAuth.tokens?.accessToken) {
       store.dispatch(authActions.signOut())
-      window.location.href = '/sign-in'
     }
   }
 };
