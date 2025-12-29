@@ -15,6 +15,13 @@ const validationSchema = Yup.object({
   email: Yup.string()
     .email('Invalid email format')
     .required('Email is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters long.')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+      'Password must contain at least one lowercase letter, one uppercase letter, and one number.'
+    )
+    .required('Password is required'),
 })
 
 export function SignInForm() {
